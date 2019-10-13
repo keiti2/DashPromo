@@ -52,7 +52,6 @@
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  display: flex;
 }
 
 @mixin ct-chart-label($ct-text-color: $ct-text-color, $ct-text-size: $ct-text-size, $ct-text-line-height: $ct-text-line-height) {

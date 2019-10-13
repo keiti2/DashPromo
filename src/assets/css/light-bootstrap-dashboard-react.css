@@ -1888,8 +1888,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex; }
+  display: -webkit-flex; }
 
 .ct-label.ct-horizontal.ct-start {
   -webkit-box-align: flex-end;
