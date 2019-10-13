@@ -35,15 +35,32 @@ _handleClick = () => {
   console.log('Clicado');
 }
 
+
+addItemToState = (item) => {
+  this.setState(prevState => ({
+    items: [...prevState.items, item]
+  }))
+}
+
+updateState = (item) => {
+  const itemIndex = this.state.items.findIndex(data => data.id === item.id)
+  const newArray = [
+  // destructure all items from beginning to the indexed item
+    ...this.state.items.slice(0, itemIndex),
+  // add the updated item to the array
+    item,
+  // add the rest of the items to the array from the index after the replaced item
+    ...this.state.items.slice(itemIndex + 1)
+  ]
+  this.setState({ items: newArray })
+}
+
     render() {
         return (
             <Grid fluid >
                 <Row>
                     <Col md={9} >
-                    <a onClick={this._handleClick} class="btn btn-primary btn-custom">
-                    <span class="glyphicon glyphicon-plus img-circle text-primary btn-icon"></span>
-                    Cadastrar Promoção
-                    </a>
+                    <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
                     </Col>
                     <Col md={3}>
                     <Dropdown  options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />   
