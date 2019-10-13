@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import Cards from "components/Card/Card.jsx";
 import { Grid, Row, Col,Table } from "react-bootstrap";
-import { cliArray } from "variables/Variables.jsx";
-import axios from 'axios';
+import { cliArray, clicArray } from "variables/Variables.jsx";
 
 class Cliente extends Component {
-  state={
-    Cliente:[]
-  }
-
-  componentDidMount(){
-    axios.get(`http://localhost:3000/api/Cliente`)
-    .then(res => {
-      const Cliente = res.data.data;
-      this.setState({ Cliente });
-    }
-    )
-    .catch(console.log("Deu ruim Cliente"))
-  }
-
     render() {
         return (
             <Grid fluid>
@@ -26,7 +11,6 @@ class Cliente extends Component {
                 <Col md={12}>
               <Cards
                 title="Relatório cliente loja"
-                category={"Total de clientes: " + this.state.Cliente.length}
                 ctTableFullWidth
                 ctTableResponsive
                 content={
@@ -39,17 +23,15 @@ class Cliente extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                   {this.state.Cliente.map(cli => {
-                     return (
-                       <tr>
-                         <td key={cli.idCliente}>{cli.nome}</td>
-                         <td key={cli.idCliente}>{cli.email}</td>
-                         <td key={cli.idCliente}>{cli.updatedAt}</td>
-                         <td key={cli.idCliente}>{cli.createdAt}</td>
-                       </tr>
-                     )
-                   })
-                   }
+                      {clicArray.map((prop, key) => {
+                        return (
+                          <tr key={key}>
+                            {prop.map((prop, key) => {
+                              return <td key={key}>{prop}</td>;
+                            })}
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </Table>
                 }

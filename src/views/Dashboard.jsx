@@ -1,32 +1,30 @@
+/*!
+
+=========================================================
+* Light Bootstrap Dashboard React - v1.3.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-react
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import React, { Component } from "react";
 import { Grid, Row, Col,Table } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
-import { thArray } from "variables/Variables.jsx";
-import axios from 'axios';
-import Alerta from "components/Alerts/Alerta.jsx"
+import { thArray, tdArray } from "variables/Variables.jsx";
+
+
 class Dashboard extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      sucesso:"True",
-      promocao:[]  
-    }
-  }
  
-  
-
-  componentDidMount() {
-    axios.get(`http://localhost:3000/api/promocao`)
-    .then(res => {
-      const promocao = res.data.data;
-      this.setState({ promocao });
-    }
-    )
-  }
-
-
   render() {
     return (
       <div className="content">
@@ -35,7 +33,7 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-angle-down-circle text-warning" />}
-                statsText= "Geradas"
+                statsText="Geradas"
                 statsValue="10"
               />
             </Col>
@@ -43,7 +41,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-success" />}
                 statsText="Resgatadas"
-                statsValue={this.state.promocao.length}
+                statsValue="25"
               />
             </Col>
             <Col lg={3} sm={6}>
@@ -69,7 +67,6 @@ class Dashboard extends Component {
                 ctTableFullWidth
                 ctTableResponsive
                 content={
-                  
                   <Table striped hover>
                     <thead>
                       <tr>
@@ -79,30 +76,20 @@ class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      
-                     {this.state.promocao.map(promo=>
-                     {
-                       return(
-                        <tr key={promo.idPromocao}>
-                            <td >{promo.descricao}</td>
-                            <td >{promo.qtde + " Uni"}</td>
-                            <td >{"R$ " + promo.valorPromocao}</td>
-                            <td >{"Nome Cliente"}</td>
+                      {tdArray.map((prop, key) => {
+                        return (
+                          <tr key={key}>
+                            {prop.map((prop, key) => {
+                              return <td key={key}>{prop}</td>;
+                            })}
                           </tr>
-                       )
-                     }
-                      )} 
+                        );
+                      })}
                     </tbody>
                   </Table>
                 }
               />
             </Col>
-        </Row>
-        <Row> 
-          <Col md={12}>
-            <p>{this.state.sucesso}</p>
-          {this.state.sucesso==="False"?<Alerta/>:null}
-          </Col>
         </Row>
         </Grid>
       </div>
