@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col,Table } from "react-bootstrap";
-import { prArray, prcArray } from "variables/Variables.jsx";
+import { Grid, Row, Col,Table,Button  } from "react-bootstrap";
+import { prArray } from "variables/Variables.jsx";
 import Cards from "components/Card/Card.jsx";
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
-
+import axios from 'axios'
+import ModalForm from '../components/ModalForm/ModalFormPromo'
 const options = [
     'Ativo','Inativo'
 ];
 const defaultOption = options[0];
 
 class Promocao extends Component {
-    
+  state={
+    promocao:[],
+    msgAtvInt:""
+  }  
+
+  componentDidMount() {
+    axios.get(`http://localhost:3000/api/promocao`)
+    .then(res => {
+      const promocao = res.data.data;
+      this.setState({ promocao });
+    }
+    )
+    .catch(console.log(this.state.sucesso))
+  }
+
+_onSelect=(event) =>{
+  console.log(event.value)
+}
+
+_handleClick = () => {
+  console.log('Clicado');
+}
+
     render() {
         return (
             <Grid fluid >
                 <Row>
                     <Col md={9} >
-                    <a href="#" class="btn btn-primary btn-custom">
+                    <a onClick={this._handleClick} class="btn btn-primary btn-custom">
                     <span class="glyphicon glyphicon-plus img-circle text-primary btn-icon"></span>
                     Cadastrar Promoção
                     </a>
@@ -44,15 +67,27 @@ class Promocao extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {prcArray.map((prop, key) => {
-                        return (
-                          <tr key={key}>
-                            {prop.map((prop, key) => {
-                              return <td key={key}>{prop}</td>;
-                            })}
+                    {this.state.promocao.map(promo=>
+                     {
+                       return(
+                        <tr key={promo.idPromocao}>
+                            <td >{promo.descricao}</td>
+                            <td >{promo.qtde + " Uni"}</td>
+                            <td >{"R$ " + promo.valorPromocao}</td>
+                            <td >{promo.updatedAt}</td>
+                            <td >{"Sim"}</td>
+                            <td>
+                            <div >
+                             <ModalForm buttonLabel="Edit" item={promo} updateState={this.props.updateState}/>
+                              {' '}
+                             <Button color="danger" onClick={() => this.deleteItem(promo.id)}>Del</Button>
+                                  </div>
+                            </td>
+
                           </tr>
-                        );
-                      })}
+                       )
+                     }
+                      )} 
                     </tbody>
                   </Table>
                 }
