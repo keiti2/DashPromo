@@ -58,11 +58,12 @@ updateState = (item) => {
     render() {
         return (
             <Grid fluid >
+               <br/>
                 <Row>
-                    <Col md={9} >
+                    <Col  md={9} className="pd-top=25px">
                     <ModalForm buttonLabel="Cadastrar Promoção" addItemToState={this.addItemToState}/>
                     </Col>
-                    <Col md={3}>
+                    <Col  md={2}>
                     <Dropdown  options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />   
                     </Col>
                 </Row>
@@ -89,7 +90,7 @@ updateState = (item) => {
                        return(
                         <tr key={promo.idPromocao}>
                           <td class="w-25" >
-                            <img src="https://www.opingodoce.com.br/wp-content/uploads/2018/04/pacoca_pacoquita_tradicional_rolha.png" class="img-fluid img-thumbnail" alt="Sheep"></img>
+                            <img src="https://www.opingodoce.com.br/wp-content/uploads/2018/04/pacoca_pacoquita_tradicional_rolha.png" class="img-fluid img-thumbnail" alt="Sheep" ></img>
                             </td>
                             <td >{promo.descricao}</td>
                             <td >{promo.qtde + " Uni"}</td>
