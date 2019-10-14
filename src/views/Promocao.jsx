@@ -88,6 +88,9 @@ updateState = (item) => {
                      {
                        return(
                         <tr key={promo.idPromocao}>
+                          <td class="w-25" >
+                            <img src="https://www.opingodoce.com.br/wp-content/uploads/2018/04/pacoca_pacoquita_tradicional_rolha.png" class="img-fluid img-thumbnail" alt="Sheep"></img>
+                            </td>
                             <td >{promo.descricao}</td>
                             <td >{promo.qtde + " Uni"}</td>
                             <td >{"R$ " + promo.valorPromocao}</td>
