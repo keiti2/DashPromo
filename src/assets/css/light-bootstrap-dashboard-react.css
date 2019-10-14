@@ -2952,6 +2952,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   .navbar-header .collapse, .navbar-toggle {
     display: block !important; }
   .navbar-header {
+    display: contents;
     float: none; }
   .navbar-nav .open .dropdown-menu {
     position: static;
