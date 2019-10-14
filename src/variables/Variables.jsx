@@ -260,7 +260,7 @@ const tdArray = [
 // // // Tablet promocao
 // // 
 //
-const prArray = ["Promoção", "QTDE Disponivel","Valor Promocional","Data Expiração","Ativo"];
+const prArray = ["Promoção", "QTDE Disponivel","Valor Promocional","Data Cadastro","Ativo","Editar Promoção"];
 const prcArray = [
   ["Disquete 1,44MB", "1 Uni.","R$: 10.99", "01/11/2020","Sim"],
   ["Bermudinha Florida", "10 Uni.","R$: 24.99", "01/11/2020","Sim"],

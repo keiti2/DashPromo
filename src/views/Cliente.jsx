@@ -10,7 +10,7 @@ class Cliente extends Component {
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:3000/api/Cliente`)
+    axios.get(`http://18.229.136.97:3000/api/Cliente`)
     .then(res => {
       const Cliente = res.data.data;
       this.setState({ Cliente });

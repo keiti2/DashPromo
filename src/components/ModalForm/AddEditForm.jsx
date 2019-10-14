@@ -3,13 +3,15 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddEditForm extends React.Component {
   state = {
-    id: 0,
-    first: '',
-    last: '',
-    email: '',
-    phone: '',
-    location: '',
-    hobby: ''
+    idPromocao: 0,
+    nomePromocao: '',
+    segmento: '',
+    descricao: '',
+    qtde: '',
+    valorReal: 0.00,
+    valorPromocao: 0.00,
+    situacao:0,
+    imagemPromo:""
   }
 
   onChange = e => {
@@ -18,18 +20,21 @@ class AddEditForm extends React.Component {
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/crud', {
+    fetch('http://18.229.136.97:3000/api/promocao', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        first: this.state.first,
-        last: this.state.last,
-        email: this.state.email,
-        phone: this.state.phone,
-        location: this.state.location,
-        hobby: this.state.hobby
+        idPromocao: this.state.idPromocao,
+        nomePromocao: this.state.nomePromocao,
+        segmento: this.state.segmento,
+        descricao: this.state.descricao,
+        qtde: this.state.qtde,
+        valorReal: this.state.valorReal,
+        valorPromocao:this.state.valorPromocao,
+        situacao:this.state.situacao,
+        imagemPromo:this.state.imagemPromo
       })
     })
       .then(response => response.json())
@@ -46,19 +51,21 @@ class AddEditForm extends React.Component {
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/crud', {
+    fetch('http://18.229.136.97:3000/api/promocao/' + this.state.idPromocao, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id: this.state.id,
-        first: this.state.first,
-        last: this.state.last,
-        email: this.state.email,
-        phone: this.state.phone,
-        location: this.state.location,
-        hobby: this.state.hobby
+        idPromocao: this.state.idPromocao,
+        nomePromocao: this.state.nomePromocao,
+        segmento: this.state.segmento,
+        descricao: this.state.descricao,
+        qtde: this.state.qtde,
+        valorReal: this.state.valorReal,
+        valorPromocao:this.state.valorPromocao,
+        situacao:this.state.situacao,
+        imagemPromo:this.state.imagemPromo
       })
     })
       .then(response => response.json())
@@ -77,8 +84,8 @@ class AddEditForm extends React.Component {
   componentDidMount(){
     // if item exists, populate the state with proper data
     if(this.props.item){
-      const { id, first, last, email, phone, location, hobby } = this.props.item
-      this.setState({ id, first, last, email, phone, location, hobby })
+      const { idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao } = this.props.item
+      this.setState({ idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao })
     }
   }
 
@@ -86,30 +93,36 @@ class AddEditForm extends React.Component {
     return (
       <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
-          <Label for="first">First Name</Label>
-          <Input type="text" name="first" id="first" onChange={this.onChange} value={this.state.first === null ? '' : this.state.first} />
+          <Label for="nomePromocao">Nome</Label>
+          <Input type="text" name="nomePromocao" id="nomePromocao" onChange={this.onChange} value={this.state.nomePromocao === null ? '' : this.state.nomePromocao} />
         </FormGroup>
         <FormGroup>
-          <Label for="last">Last Name</Label>
-          <Input type="text" name="last" id="last" onChange={this.onChange} value={this.state.last === null ? '' : this.state.last}  />
+          <Label for="segmento">Segmento</Label>
+          <Input type="text" name="segmento" id="segmento" onChange={this.onChange} value={this.state.segmento === null ? '' : this.state.segmento}  />
         </FormGroup>
         <FormGroup>
-          <Label for="email">Email</Label>
-          <Input type="email" name="email" id="email" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email}  />
+          <Label for="descricao">descricao</Label>
+          <Input type="text" name="descricao" id="descricao" onChange={this.onChange} value={this.state.descricao === null ? '' : this.state.descricao}  />
         </FormGroup>
         <FormGroup>
-          <Label for="phone">Phone</Label>
-          <Input type="text" name="phone" id="phone" onChange={this.onChange} value={this.state.phone === null ? '' : this.state.phone}  placeholder="ex. 555-555-5555" />
+          <Label for="qtde">Quantidade Disponível</Label>
+          <Input type="number" name="qtde" id="qtde" onChange={this.onChange} value={this.state.qtde === null ? '' : this.state.qtde}  />
         </FormGroup>
         <FormGroup>
-          <Label for="location">Location</Label>
-          <Input type="text" name="location" id="location" onChange={this.onChange} value={this.state.location === null ? '' : this.state.location}  placeholder="City, State" />
+          <Label for="valorReal">Valor Real</Label>
+          <Input type="number" name="valorReal" id="valorReal" onChange={this.onChange} value={this.state.valorReal === null ? '' : this.state.valorReal}   />
         </FormGroup>
         <FormGroup>
-          <Label for="hobby">Hobby</Label>
-          <Input type="text" name="hobby" id="hobby" onChange={this.onChange} value={this.state.hobby}  />
+          <Label for="valorPromocao">Valor Promocional</Label>
+          <Input type="number" name="valorPromocao" id="valorPromocao" onChange={this.onChange} value={this.state.valorPromocao}  />
         </FormGroup>
-        <Button>Submit</Button>
+        <FormGroup>
+          <Label for="imagemPromo">Imagem Promo</Label>
+          <Input type="file" name="imagemPromo" id="imagemPromo" onChange={this.onChange} value={this.state.imagemPromo}  />
+        </FormGroup>
+        <Button>Ok</Button>
+        {" "}
+        <Button>Cancelar</Button>
       </Form>
     );
   }

@@ -14,11 +14,9 @@ class Dashboard extends Component {
       promocao:[]  
     }
   }
- 
-  
 
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/promocao`)
+    axios.get(`http://18.229.136.97:3000/api/promocao`)
     .then(res => {
       const promocao = res.data.data;
       this.setState({ promocao });
@@ -100,7 +98,6 @@ class Dashboard extends Component {
         </Row>
         <Row> 
           <Col md={12}>
-            <p>{this.state.sucesso}</p>
           {this.state.sucesso==="False"?<Alerta/>:null}
           </Col>
         </Row>

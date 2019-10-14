@@ -18,7 +18,7 @@ class Promocao extends Component {
   }  
 
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/promocao`)
+    axios.get(`http://18.229.136.97:3000/api/promocao`)
     .then(res => {
       const promocao = res.data.data;
       this.setState({ promocao });
@@ -60,7 +60,7 @@ updateState = (item) => {
             <Grid fluid >
                 <Row>
                     <Col md={9} >
-                    <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
+                    <ModalForm buttonLabel="Cadastrar Promoção" addItemToState={this.addItemToState}/>
                     </Col>
                     <Col md={3}>
                     <Dropdown  options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />   
@@ -97,7 +97,6 @@ updateState = (item) => {
                             <div >
                              <ModalForm buttonLabel="Edit" item={promo} updateState={this.props.updateState}/>
                               {' '}
-                             <Button color="danger" onClick={() => this.deleteItem(promo.id)}>Del</Button>
                                   </div>
                             </td>
 
