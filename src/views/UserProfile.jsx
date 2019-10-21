@@ -23,7 +23,7 @@ class UserProfile extends Component {
 
   submitAtualizar = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/api/empresa/altera/2', {
+    fetch('http://52.67.233.156/api/empresa/altera/2', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ class UserProfile extends Component {
   }
 
 componentDidMount(){
-  axios.get(`http://localhost:3000/api/empresa/2`)
+  axios.get(`http://52.67.233.156/api/empresa/2`)
   .then(res => {
     const Empresa = res.data.data;
     this.setState({ Empresa });
@@ -138,14 +138,14 @@ componentDidMount(){
                       </Col>
                       <Col md={2}>
                         Numero
-                        <Input type="number" name="Numero" id="Numero" placeholder="Numero" onChange={this.onChange} value={ this.state.Numero} />
+                        <Input type="number" name="Numero" id="Numero" placeholder="Numero" onChange={this.onChange} value={ this.state.numero} />
                       </Col>
                     </Row>
               
                     <Row>
                       <Col md={4}>
                       Cidade
-                      <Input type="text" name="Cidade" id="Cidade" placeholder="Cidade" onChange={this.onChange} value={ this.state.Cidade} />
+                      <Input type="text" name="Cidade" id="Cidade" placeholder="Cidade" onChange={this.onChange} value={ this.state.cidade} />
                       </Col>
                       <Col md={4}>
                       Bairro

@@ -34,7 +34,7 @@ _onSelect=(event) =>{
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/api/promocao', {
+    fetch('http://52.67.233.156/api/promocao', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ _onSelect=(event) =>{
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/api/promocao/altera/' + this.state.idPromocao, {
+    fetch('http://52.67.233.156/api/promocao/altera/' + this.state.idPromocao, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'

@@ -17,7 +17,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/cupom`)
+    axios.get(`http://52.67.233.156/api/cupom`)
     .then(res => {
       const promocao = res.data.data;
       this.setState({ promocao });

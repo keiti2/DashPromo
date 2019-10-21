@@ -24,7 +24,7 @@ class Promocao extends Component {
   }
 
   getPromocoes(situacao){
-    axios.get(`http://localhost:3000/api/promocao`)
+    axios.get(`http://52.67.233.156/api/promocao`)
     .then(res => {
       const dados = res.data.data;
       const promocao=[]
