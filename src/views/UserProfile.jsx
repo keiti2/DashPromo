@@ -18,7 +18,21 @@ import  {Input}  from 'reactstrap';
 
 
 class UserProfile extends Component {
-  
+  state={
+    Empresa:{},
+    cnpj:0,
+    razaoSocial:"",
+    email:"",
+    senha:"",
+    endereco:"",
+    numero:0,
+    cidade:"",
+    bairro:"",
+    cep:0,
+    sobreempresa:"",
+    segmento:"",
+    responsavel:""
+  }
 
 
   submitAtualizar = e => {
@@ -56,21 +70,7 @@ class UserProfile extends Component {
   }
 
 
-  state={
-    Empresa:{},
-    cnpj:0,
-    razaoSocial:"",
-    email:"",
-    senha:"",
-    endereco:"",
-    numero:0,
-    cidade:"",
-    bairro:"",
-    cep:0,
-    sobreempresa:"",
-    segmento:"",
-    responsavel:""
-  }
+  
 
 componentDidMount(){
   axios.get(`http://52.67.233.156/api/empresa/2`)
@@ -104,24 +104,24 @@ componentDidMount(){
 
                     <Col md={4}>
                       E-mail
-                    <Input type="email" name="Email" id="Email" placeholder="E-mail" onChange={this.onChange} value={ this.state.email} />
+                    <Input type="email" name="email" id="email" placeholder="E-mail" onChange={this.onChange} value={ this.state.email} />
+                    
                     </Col>
-
                     <Col md={3}>
                       Senha
-                    <Input type="password" name="Senha" id="Senha" placeholder="Senha" onChange={this.onChange} value={ this.state.senha} />
+                    <Input type="password" name="senha" id="senha" placeholder="Senha" onChange={this.onChange} value={ this.state.senha} />
                     </Col>
                     </Row>
      
                     <Row>
                       <Col md={3}>
                         Cnpj
-                      <Input type="text" name="Cnpj" id="Cnpj" placeholder="Cnpj" onChange={this.onChange} value={ this.state.cnpj} />
+                      <Input type="text" name="cnpj" id="cnpj" placeholder="Cnpj" onChange={this.onChange} value={ this.state.cnpj} />
                       </Col>
 
                       <Col md={4}>
                         Segmento
-                      <Input type="text" name="Segmento" id="Segmento" placeholder="Segmento" onChange={this.onChange} value={ this.state.segmento} />
+                      <Input type="text" name="segmento" id="segmento" placeholder="Segmento" onChange={this.onChange} value={ this.state.segmento} />
                       </Col>
 
                       <Col md={5}>
@@ -138,14 +138,14 @@ componentDidMount(){
                       </Col>
                       <Col md={2}>
                         Numero
-                        <Input type="number" name="Numero" id="Numero" placeholder="Numero" onChange={this.onChange} value={ this.state.numero} />
+                        <Input type="number" name="numero" id="numero" placeholder="Numero" onChange={this.onChange} value={ this.state.numero} />
                       </Col>
                     </Row>
               
                     <Row>
                       <Col md={4}>
                       Cidade
-                      <Input type="text" name="Cidade" id="Cidade" placeholder="Cidade" onChange={this.onChange} value={ this.state.cidade} />
+                      <Input type="text" name="cidade" id="cidade" placeholder="Cidade" onChange={this.onChange} value={ this.state.cidade} />
                       </Col>
                       <Col md={4}>
                       Bairro

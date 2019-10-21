@@ -121,7 +121,7 @@ updateState = (item) => {
                             <td >{promo.qtde + " Uni"}</td>
                             <td >{"R$ " + promo.valorPromocao}</td>
                             <td > {promo.createdAt} </td>
-                            <td >{"Sim"}</td>
+                            <td >{this.state.situacao}</td>
                             <td>
                             <div >
                              <ModalForm buttonLabel="Edit" item={promo}  updateState={this.updateState} atualizaPromocoes={this.atualizaPromocoes}/>
