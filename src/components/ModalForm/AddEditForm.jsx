@@ -1,5 +1,10 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input,Row,Col } from 'reactstrap';
+import Dropdown from 'react-dropdown'
+import Upload from '../FormInputs/Upload'
+const options = [
+  'Inativo','Ativo'
+];
 
 class AddEditForm extends React.Component {
   state = {
@@ -10,17 +15,26 @@ class AddEditForm extends React.Component {
     qtde: '',
     valorReal: 0.00,
     valorPromocao: 0.00,
-    situacao:0,
-    imagemPromo:""
+    imagemPromo:"",
+    situacao:1
   }
+  
 
+_onSelect=(event) =>{
+  console.log(event.value)
+  if (event.value==="Inativo"){
+    this.setState({situacao:0})
+    } else{
+    this.setState({situacao:1})
+  }
+}
   onChange = e => {
     this.setState({[e.target.name]: e.target.value})
   }
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://18.229.136.97:3000/api/promocao', {
+    fetch('http://localhost:3000/api/promocao', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -34,24 +48,21 @@ class AddEditForm extends React.Component {
         valorReal: this.state.valorReal,
         valorPromocao:this.state.valorPromocao,
         situacao:this.state.situacao,
-        imagemPromo:this.state.imagemPromo
+        imagemPromo:this.state.imagemPromo,
       })
     })
       .then(response => response.json())
       .then(item => {
-        if(Array.isArray(item)) {
-          this.props.addItemToState(item[0])
-          this.props.toggle()
-        } else {
-          console.log('failure')
-        }
+        alert("Promoção Cadastrada com sucesso!")
+        this.props.toggle()
+        this.props.atualizaPromocoes()
       })
       .catch(err => console.log(err))
   }
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://18.229.136.97:3000/api/promocao/' + this.state.idPromocao, {
+    fetch('http://localhost:3000/api/promocao/altera/' + this.state.idPromocao, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
@@ -65,18 +76,14 @@ class AddEditForm extends React.Component {
         valorReal: this.state.valorReal,
         valorPromocao:this.state.valorPromocao,
         situacao:this.state.situacao,
-        imagemPromo:this.state.imagemPromo
+        imagemPromo:this.state.imagemPromo,
       })
     })
       .then(response => response.json())
       .then(item => {
-        if(Array.isArray(item)) {
-          // console.log(item[0])
-          this.props.updateState(item[0])
-          this.props.toggle()
-        } else {
-          console.log('failure')
-        }
+        alert("Promoção Atualizada com sucesso !")
+        this.props.toggle()
+        this.props.atualizaPromocoes()
       })
       .catch(err => console.log(err))
   }
@@ -108,22 +115,34 @@ class AddEditForm extends React.Component {
           <Label for="qtde">Quantidade Disponível</Label>
           <Input type="number" name="qtde" id="qtde" onChange={this.onChange} value={this.state.qtde === null ? '' : this.state.qtde}  />
         </FormGroup>
-        <FormGroup>
+     <Row>
+       <Col md={6}>
+       <FormGroup>
           <Label for="valorReal">Valor Real</Label>
           <Input type="number" name="valorReal" id="valorReal" onChange={this.onChange} value={this.state.valorReal === null ? '' : this.state.valorReal}   />
         </FormGroup>
-        <FormGroup>
+       </Col>
+       <Col md={6}>
+       <FormGroup>
           <Label for="valorPromocao">Valor Promocional</Label>
           <Input type="number" name="valorPromocao" id="valorPromocao" onChange={this.onChange} value={this.state.valorPromocao}  />
         </FormGroup>
+       </Col>
+     </Row>
+
+      <FormGroup>
+      <Dropdown  options={options} onChange={this._onSelect} placeholder="Selecione Ativo/Inativo" value={options[this.state.situacao]} />   
+      </FormGroup>
+
         <FormGroup>
-          <Label for="imagemPromo">Imagem Promo</Label>
-          <Input type="file" name="imagemPromo" id="imagemPromo" onChange={this.onChange} value={this.state.imagemPromo}  />
-        </FormGroup>
+        <Label for="imagemPromo">Imagem Promo</Label>
+        <Upload/>
+      </FormGroup>
+
         <Button>Ok</Button>
-        {" "}
-        <Button>Cancelar</Button>
       </Form>
+
+      
     );
   }
 }

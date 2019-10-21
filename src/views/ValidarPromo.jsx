@@ -5,9 +5,9 @@ class ValidarPromo extends Component {
     render() {
         return (
             <Grid fluid>
-                <Row>
+                <Row >
                                 <div class="row">
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Validar Promo</h5>
@@ -16,7 +16,7 @@ class ValidarPromo extends Component {
                     </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Dados Cupom</h5>

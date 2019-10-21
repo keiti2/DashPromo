@@ -11,12 +11,13 @@ class Dashboard extends Component {
     super(props);
     this.state={
       sucesso:"True",
-      promocao:[]  
+      promocao:[]  ,
+      value:0
     }
   }
 
   componentDidMount() {
-    axios.get(`http://18.229.136.97:3000/api/promocao`)
+    axios.get(`http://localhost:3000/api/cupom`)
     .then(res => {
       const promocao = res.data.data;
       this.setState({ promocao });
@@ -24,6 +25,16 @@ class Dashboard extends Component {
     )
   }
 
+  statusResgatadas(){
+   
+    this.state.promo.map(promo=>{
+      if (promo.utilizado===1){
+        this.setState({value:this.state.value.count += 1});
+      }
+    })
+    console.log(this.state.value)
+    return(this.state.value)
+  }
 
   render() {
     return (
@@ -34,7 +45,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-angle-down-circle text-warning" />}
                 statsText= "Geradas"
-                statsValue="10"
+                statsValue={this.state.promocao.length}
               />
             </Col>
             <Col lg={3} sm={6}>
@@ -42,7 +53,7 @@ class Dashboard extends Component {
                 bigIcon={<i className="pe-7s-wallet text-success" />}
                 statsText="Resgatadas"
                 statsValue={this.state.promocao.length}
-              />
+                />
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
@@ -82,10 +93,10 @@ class Dashboard extends Component {
                      {
                        return(
                         <tr key={promo.idPromocao}>
-                            <td >{promo.descricao}</td>
+                            <td >{promo.promocao.nomePromocao}</td>
                             <td >{promo.qtde + " Uni"}</td>
-                            <td >{"R$ " + promo.valorPromocao}</td>
-                            <td >{"Nome Cliente"}</td>
+                            <td >{"R$ " + promo.promocao.valorPromocao}</td>
+                            <td >{promo.cliente.nome}</td>
                           </tr>
                        )
                      }

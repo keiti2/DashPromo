@@ -22,7 +22,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/ValidarPromo",
+    path: "/validarpromo",
     name: "Validar Promoção",
     icon: "pe-7s-download",
     component: ValidarPromocao,

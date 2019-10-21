@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col,Table,Button  } from "react-bootstrap";
+import { Grid, Row, Col,Table  } from "react-bootstrap";
 import { prArray } from "variables/Variables.jsx";
 import Cards from "components/Card/Card.jsx";
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import axios from 'axios'
 import ModalForm from '../components/ModalForm/ModalFormPromo'
+
 const options = [
     'Ativo','Inativo'
 ];
@@ -14,21 +15,45 @@ const defaultOption = options[0];
 class Promocao extends Component {
   state={
     promocao:[],
-    msgAtvInt:""
+    msgAtvInt:"",
+    situacao:"Ativo"
   }  
 
   componentDidMount() {
-    axios.get(`http://18.229.136.97:3000/api/promocao`)
+    this.getPromocoes(1)
+  }
+
+  getPromocoes(situacao){
+    axios.get(`http://localhost:3000/api/promocao`)
     .then(res => {
-      const promocao = res.data.data;
+      const dados = res.data.data;
+      const promocao=[]
+      dados.map(promo =>{
+          if (promo.situacao==situacao){
+            promocao.push(promo)
+          }
+       
+      })
       this.setState({ promocao });
+      
     }
     )
     .catch(console.log(this.state.sucesso))
   }
 
+  atualizaPromocoes(){
+    window.location.reload()
+  }
+
 _onSelect=(event) =>{
   console.log(event.value)
+  if (event.value==="Inativo"){
+    this.setState({situacao:"Inativo"})
+    this.getPromocoes(0)
+  } else{
+    this.setState({situacao:"Ativo"})
+    this.getPromocoes(1)
+  }
 }
 
 _handleClick = () => {
@@ -61,17 +86,17 @@ updateState = (item) => {
                <br/>
                 <Row>
                     <Col  md={9} className="pd-top=25px">
-                    <ModalForm buttonLabel="Cadastrar Promoção" addItemToState={this.addItemToState}/>
+                    <ModalForm buttonLabel="Cadastrar Promoção" addItemToState={this.addItemToState} atualizaPromocoes={this.atualizaPromocoes} />
                     </Col>
                     <Col  md={2}>
-                    <Dropdown  options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />   
+                    <Dropdown  options={options} onChange={this._onSelect} placeholder="Selecione Ativo/Inativo"  />   
                     </Col>
                 </Row>
 
                 <Row>
                 <Col md={12}>
               <Cards
-                title="Promoções Cadastradas"
+                title={"Promoções Cadastradas " + this.state.situacao }
                 ctTableFullWidth
                 ctTableResponsive
                 content={
@@ -90,16 +115,16 @@ updateState = (item) => {
                        return(
                         <tr key={promo.idPromocao}>
                           <td class="w-25" >
-                            <img src="https://www.opingodoce.com.br/wp-content/uploads/2018/04/pacoca_pacoquita_tradicional_rolha.png" class="img-fluid img-thumbnail" alt="Sheep" ></img>
+                            <img src="https://www.opingodoce.com.br/wp-content/uploads/2018/04/pacoca_pacoquita_tradicional_rolha.png" class="img-thumbnail" alt="Sheep" style={{ width: 80 }} ></img>
                             </td>
-                            <td >{promo.descricao}</td>
+                            <td >{promo.nomePromocao}</td>
                             <td >{promo.qtde + " Uni"}</td>
                             <td >{"R$ " + promo.valorPromocao}</td>
-                            <td >{promo.updatedAt}</td>
+                            <td > {promo.createdAt} </td>
                             <td >{"Sim"}</td>
                             <td>
                             <div >
-                             <ModalForm buttonLabel="Edit" item={promo} updateState={this.props.updateState}/>
+                             <ModalForm buttonLabel="Edit" item={promo}  updateState={this.updateState} atualizaPromocoes={this.atualizaPromocoes}/>
                               {' '}
                                   </div>
                             </td>
