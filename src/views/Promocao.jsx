@@ -116,7 +116,7 @@ updateState = (item) => {
                      {
                        return(
                         <tr key={promo.idPromocao}>
-                          <td class="w-25" >
+                          <td  >
                           <img src={`${new Buffer( promo.imagem, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80 }}  />
                             </td>
                             <td >{promo.nomePromocao}</td>

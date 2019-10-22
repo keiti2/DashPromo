@@ -9,7 +9,7 @@ class Upload extends Component {
     this.state = {
       file: null,
       baseimg:[],
-      base64:[]
+      base64:[123]
     }
     this.handleImageChange = this.handleImageChange.bind(this)
   }
@@ -44,7 +44,7 @@ class Upload extends Component {
     return (
       <div>
         <input type="file" onChange={this.handleImageChange}/>
-        <img src={`${new Buffer( this.state.base64, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80 }}  />
+        <img src={`${new Buffer( this.props.imagem, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80 }}  />
       </div>
     );
   }

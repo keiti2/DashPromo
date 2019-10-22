@@ -64,12 +64,7 @@ _onSelect=(event) =>{
       .catch(err => console.log(err))
   }
 
-   validaImagem(){
-   
-      const imagem = new Buffer( this.state.imagem, 'binary' ).toString()
-      
-    
-   } 
+
   submitFormEdit = e => {
     e.preventDefault()
     const imagem = new Buffer( this.state.imagem, 'binary' ).toString()
@@ -151,7 +146,7 @@ _onSelect=(event) =>{
 
         <FormGroup>
         <Label for="imagemPromo">Imagem Promo</Label>
-        <Upload atualizaImgBase64={this.atualizaImgBase64} imagem={this.props.item?this.props.item.imagem:null}/>
+        <Upload atualizaImgBase64={this.atualizaImgBase64} imagem={this.state.imagem}/>
       </FormGroup>
 
         <Button>Ok</Button>
