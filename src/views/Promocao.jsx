@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,Image } from 'react';
 import { Grid, Row, Col,Table  } from "react-bootstrap";
 import { prArray } from "variables/Variables.jsx";
 import Cards from "components/Card/Card.jsx";
@@ -67,6 +67,8 @@ addItemToState = (item) => {
   }))
 }
 
+
+
 updateState = (item) => {
   const itemIndex = this.state.items.findIndex(data => data.id === item.id)
   const newArray = [
@@ -115,7 +117,7 @@ updateState = (item) => {
                        return(
                         <tr key={promo.idPromocao}>
                           <td class="w-25" >
-                            <img src="https://www.opingodoce.com.br/wp-content/uploads/2018/04/pacoca_pacoquita_tradicional_rolha.png" class="img-thumbnail" alt="Sheep" style={{ width: 80 }} ></img>
+                          <img src={`${new Buffer( promo.imagem, 'binary' ).toString()}`} class="img-thumbnail" alt="Sheep" style={{ width: 80 }}  />
                             </td>
                             <td >{promo.nomePromocao}</td>
                             <td >{promo.qtde + " Uni"}</td>

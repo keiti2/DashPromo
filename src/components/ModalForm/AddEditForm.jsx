@@ -7,17 +7,22 @@ const options = [
 ];
 
 class AddEditForm extends React.Component {
-  state = {
-    idPromocao: 0,
-    nomePromocao: '',
-    segmento: '',
-    descricao: '',
-    qtde: '',
-    valorReal: 0.00,
-    valorPromocao: 0.00,
-    imagemPromo:"",
-    situacao:1
+  constructor(props){
+    super(props)
+    this.state = {
+      idPromocao: 0,
+      nomePromocao: '',
+      segmento: '',
+      descricao: '',
+      qtde: '',
+      valorReal: 0.00,
+      valorPromocao: 0.00,
+      imagemPromo:[],
+      situacao:1
+    }
+    this.atualizaImgBase64=this.atualizaImgBase64.bind(this)
   }
+  
   
 
 _onSelect=(event) =>{
@@ -48,7 +53,7 @@ _onSelect=(event) =>{
         valorReal: this.state.valorReal,
         valorPromocao:this.state.valorPromocao,
         situacao:this.state.situacao,
-        imagemPromo:this.state.imagemPromo,
+        imagem:this.state.imagemPromo,
       })
     })
       .then(response => response.json())
@@ -76,7 +81,7 @@ _onSelect=(event) =>{
         valorReal: this.state.valorReal,
         valorPromocao:this.state.valorPromocao,
         situacao:this.state.situacao,
-        imagemPromo:this.state.imagemPromo,
+        imagem:this.state.imagemPromo,
       })
     })
       .then(response => response.json())
@@ -94,6 +99,11 @@ _onSelect=(event) =>{
       const { idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao } = this.props.item
       this.setState({ idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao })
     }
+  }
+
+  atualizaImgBase64(base){
+    console.log(base)
+    this.setState({imagemPromo:base})
   }
 
   render() {
@@ -136,7 +146,7 @@ _onSelect=(event) =>{
 
         <FormGroup>
         <Label for="imagemPromo">Imagem Promo</Label>
-        <Upload/>
+        <Upload atualizaImgBase64={this.atualizaImgBase64} />
       </FormGroup>
 
         <Button>Ok</Button>
