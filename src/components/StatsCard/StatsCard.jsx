@@ -6,14 +6,14 @@ export class StatsCard extends Component {
   render() {
     return (
       <div className="card card-stats">
-        <div className="content">
+        <div className="content" padding-left="115px">
           <Row>
-            <Col xs={5}>
-              <div className="icon-big text-center icon-warning">
+            <Col xs={5} >
+              <div className="icon-big text-center icon-warning" >
                 {this.props.bigIcon}
               </div>
             </Col>
-            <Col xs={7}>
+            <Col xs={7} >
               <div className="numbers">
                 <p>{this.props.statsText}</p>
                 {this.props.statsValue}

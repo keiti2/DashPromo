@@ -97,80 +97,75 @@ componentDidMount(){
                 content={
                   <form>
                     <Row>
-                    <Col md={5}>
+                    <Col md={2}>
+                        Cnpj
+                      <Input type="text" name="cnpj" id="cnpj" placeholder="Cnpj" onChange={this.onChange} value={ this.state.cnpj} />
+                      </Col>
+
+                    <Col md={3}>
                       Nome Fatasia
                     <Input type="text" name="razaoSocial" id="razaoSocial" placeholder="Nome Fantasia" onChange={this.onChange} value={ this.state.razaoSocial} />
                     </Col>
 
-                    <Col md={4}>
+                    <Col md={3}>
+                        Nome Responsável
+                      <Input type="text" name="responsavel" id="responsavel" placeholder="Nome Responsavel" onChange={this.onChange} value={ this.state.responsavel} />
+                      </Col>
+
+                    <Col md={3}>
                       E-mail
                     <Input type="email" name="email" id="email" placeholder="E-mail" onChange={this.onChange} value={ this.state.email} />
                     
                     </Col>
-                    <Col md={3}>
+                    <Col md={1}>
                       Senha
                     <Input type="password" name="senha" id="senha" placeholder="Senha" onChange={this.onChange} value={ this.state.senha} />
                     </Col>
                     </Row>
      
                     <Row>
-                      <Col md={3}>
-                        Cnpj
-                      <Input type="text" name="cnpj" id="cnpj" placeholder="Cnpj" onChange={this.onChange} value={ this.state.cnpj} />
-                      </Col>
+                      
 
-                      <Col md={4}>
-                        Segmento
-                      <Input type="text" name="segmento" id="segmento" placeholder="Segmento" onChange={this.onChange} value={ this.state.segmento} />
-                      </Col>
-
-                      <Col md={5}>
-                        Nome Responsável
-                      <Input type="text" name="responsavel" id="responsavel" placeholder="Nome Responsavel" onChange={this.onChange} value={ this.state.responsavel} />
-                      </Col>
-                    </Row>
-
-
-                    <Row>
-                      <Col md={10}>
-                        Endereço
-                        <Input type="text" name="endereco" id="endereco" placeholder="Endereço" onChange={this.onChange} value={ this.state.endereco} />
-                      </Col>
                       <Col md={2}>
-                        Numero
-                        <Input type="number" name="numero" id="numero" placeholder="Numero" onChange={this.onChange} value={ this.state.numero} />
-                      </Col>
-                    </Row>
-              
-                    <Row>
-                      <Col md={4}>
-                      Cidade
-                      <Input type="text" name="cidade" id="cidade" placeholder="Cidade" onChange={this.onChange} value={ this.state.cidade} />
-                      </Col>
-                      <Col md={4}>
-                      Bairro
-                      <Input type="text" name="bairro" id="bairro" placeholder="bairro" onChange={this.onChange} value={ this.state.bairro} />
-                      </Col>
-                      <Col md={4}>
                       Cep
                       <Input type="number" name="cep" id="cep" placeholder="cep" onChange={this.onChange} value={ this.state.cep} />
                       </Col>
+
+                      <Col md={3}>
+                        Endereço
+                        <Input type="text" name="endereco" id="endereco" placeholder="Endereço" onChange={this.onChange} value={ this.state.endereco} />
+                      </Col>
+                      
+                      <Col md={3}>
+                      Cidade
+                      <Input type="text" name="cidade" id="cidade" placeholder="Cidade" onChange={this.onChange} value={ this.state.cidade} />
+                      </Col>
+                      <Col md={3}>
+                      Bairro
+                      <Input type="text" name="bairro" id="bairro" placeholder="bairro" onChange={this.onChange} value={ this.state.bairro} />
+                      </Col>
+
+                      <Col md={1}>
+                        Número
+                        <Input type="number" name="numero" id="numero" placeholder="Numero" onChange={this.onChange} value={ this.state.numero} />
+                      </Col>
+                      
                     </Row>
 
                     <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          Sobre Empresa
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="Sobre Empresa"
-                            defaultValue= {this.state.sobreempresa}
-                          />
-                        </FormGroup>
-                      </Col>
+                        
+                    <Col md={5}>
+                        Segmento
+                      <Input type="text" name="segmento" id="segmento" placeholder="Segmento" onChange={this.onChange} value={ this.state.segmento} />
+                     </Col>
+
+                     <Col md={7}>
+                        Sobre Empresa
+                      <Input type="text" name="sobreempresa" id="sobreempresa" placeholder="Sobre Empresa" onChange={this.onChange} value={ this.state.sobreempresa} />
+                     </Col>
+                      
                     </Row>
+
                     <Button bsStyle="info" pullRight fill onClick={this.submitAtualizar}  >
                       Atualizar
                     </Button>

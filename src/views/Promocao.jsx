@@ -87,10 +87,10 @@ updateState = (item) => {
             <Grid fluid >
                <br/>
                 <Row>
-                    <Col  md={9} className="pd-top=25px">
+                    <Col  md={7}  className="pd-top=25px">
                     <ModalForm buttonLabel="Cadastrar Promoção" addItemToState={this.addItemToState} atualizaPromocoes={this.atualizaPromocoes} />
                     </Col>
-                    <Col  md={2}>
+                    <Col  md={5} >
                     <Dropdown  options={options} onChange={this._onSelect} placeholder="Selecione Ativo/Inativo"  />   
                     </Col>
                 </Row>
@@ -117,7 +117,9 @@ updateState = (item) => {
                        return(
                         <tr key={promo.idPromocao}>
                           <td  >
-                          <img src={`${new Buffer( promo.imagem, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80 }}  />
+                            <div>
+                          <img src={`${new Buffer( promo.imagem, 'binary' ).toString()}`} class="img-fluid" alt="Responsive image" style={{ width: 90 }}  />
+                            </div>
                             </td>
                             <td >{promo.nomePromocao}</td>
                             <td >{promo.qtde + " Uni"}</td>

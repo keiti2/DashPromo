@@ -44,7 +44,7 @@ class Upload extends Component {
     return (
       <div>
         <input type="file" onChange={this.handleImageChange}/>
-        <img src={`${new Buffer( this.props.imagem, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80 }}  />
+        <img src={`${new Buffer( this.props.imagem, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80  }}  />
       </div>
     );
   }

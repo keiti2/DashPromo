@@ -22,6 +22,7 @@ class Cliente extends Component {
     render() {
         return (
             <Grid fluid>
+              <br></br>
                 <Row>
                 <Col md={12}>
               <Cards
