@@ -17,7 +17,7 @@ class AddEditForm extends React.Component {
       qtde: '',
       valorReal: 0.00,
       valorPromocao: 0.00,
-      imagemPromo:[],
+      imagem:[],
       situacao:1
     }
     this.atualizaImgBase64=this.atualizaImgBase64.bind(this)
@@ -26,7 +26,6 @@ class AddEditForm extends React.Component {
   
 
 _onSelect=(event) =>{
-  console.log(event.value)
   if (event.value==="Inativo"){
     this.setState({situacao:0})
     } else{
@@ -53,7 +52,7 @@ _onSelect=(event) =>{
         valorReal: this.state.valorReal,
         valorPromocao:this.state.valorPromocao,
         situacao:this.state.situacao,
-        imagem:this.state.imagemPromo,
+        imagem:this.state.imagem,
       })
     })
       .then(response => response.json())
@@ -65,8 +64,15 @@ _onSelect=(event) =>{
       .catch(err => console.log(err))
   }
 
+   validaImagem(){
+   
+      const imagem = new Buffer( this.state.imagem, 'binary' ).toString()
+      
+    
+   } 
   submitFormEdit = e => {
     e.preventDefault()
+    const imagem = new Buffer( this.state.imagem, 'binary' ).toString()
     fetch('http://52.67.233.156/api/promocao/altera/' + this.state.idPromocao, {
       method: 'put',
       headers: {
@@ -81,7 +87,7 @@ _onSelect=(event) =>{
         valorReal: this.state.valorReal,
         valorPromocao:this.state.valorPromocao,
         situacao:this.state.situacao,
-        imagem:this.state.imagemPromo,
+        imagem:imagem,
       })
     })
       .then(response => response.json())
@@ -96,14 +102,13 @@ _onSelect=(event) =>{
   componentDidMount(){
     // if item exists, populate the state with proper data
     if(this.props.item){
-      const { idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao } = this.props.item
-      this.setState({ idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao })
+      const { idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao,imagem } = this.props.item
+      this.setState({ idPromocao, nomePromocao, segmento, descricao, qtde, valorReal, valorPromocao,situacao,imagem })
     }
   }
 
   atualizaImgBase64(base){
-    console.log(base)
-    this.setState({imagemPromo:base})
+    this.setState({imagem:base})
   }
 
   render() {
@@ -146,7 +151,7 @@ _onSelect=(event) =>{
 
         <FormGroup>
         <Label for="imagemPromo">Imagem Promo</Label>
-        <Upload atualizaImgBase64={this.atualizaImgBase64} />
+        <Upload atualizaImgBase64={this.atualizaImgBase64} imagem={this.props.item?this.props.item.imagem:null}/>
       </FormGroup>
 
         <Button>Ok</Button>

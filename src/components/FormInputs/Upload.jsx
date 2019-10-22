@@ -13,6 +13,13 @@ class Upload extends Component {
     }
     this.handleImageChange = this.handleImageChange.bind(this)
   }
+
+  componentDidMount() {
+    this.setState({base64:this.props.imagem})
+  }
+
+
+
   handleChange(event) {
     this.setState({
       file: URL.createObjectURL(event.target.files[0])
@@ -37,7 +44,7 @@ class Upload extends Component {
     return (
       <div>
         <input type="file" onChange={this.handleImageChange}/>
-        <img src={this.state.file} style={{ width: 114 }} />
+        <img src={`${new Buffer( this.state.base64, 'binary' ).toString()}`} class="img-thumbnail"  style={{ width: 80 }}  />
       </div>
     );
   }
