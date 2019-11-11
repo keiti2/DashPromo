@@ -6,6 +6,7 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import axios from 'axios'
 import ModalForm from '../components/ModalForm/ModalFormPromo'
+import Moment from 'moment';
 
 const options = [
     'Ativo','Inativo'
@@ -124,7 +125,7 @@ updateState = (item) => {
                             <td >{promo.nomePromocao}</td>
                             <td >{promo.qtde + " Uni"}</td>
                             <td >{"R$ " + promo.valorPromocao}</td>
-                            <td > {promo.createdAt} </td>
+                            <td > {Moment(promo.createdAt).format("DD/MM/YYYY")} </td>
                             <td >{this.state.situacao}</td>
                             <td>
                             <div >
