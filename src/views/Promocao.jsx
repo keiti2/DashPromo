@@ -7,6 +7,7 @@ import 'react-dropdown/style.css'
 import axios from 'axios'
 import ModalForm from '../components/ModalForm/ModalFormPromo'
 import Moment from 'moment';
+import swal from 'sweetalert';
 
 const options = [
     'Ativo','Inativo'
@@ -14,11 +15,18 @@ const options = [
 const defaultOption = options[0];
 
 class Promocao extends Component {
-  state={
-    promocao:[],
-    msgAtvInt:"",
-    situacao:"Ativo"
-  }  
+
+
+
+  constructor(props){
+    super(props);
+    this.state={
+      promocao:[],
+      msgAtvInt:"",
+      situacao:"Ativo"
+    }
+    this.atualizaPromocoes=this.atualizaPromocoes.bind(this)
+  }
 
   componentDidMount() {
     this.getPromocoes(1)
@@ -43,7 +51,7 @@ class Promocao extends Component {
   }
 
   atualizaPromocoes(){
-    window.location.reload()
+    this.getPromocoes(1)
   }
 
 _onSelect=(event) =>{

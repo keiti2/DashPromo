@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input,Row,Col } from 'reactstrap';
 import Dropdown from 'react-dropdown'
 import Upload from '../FormInputs/Upload'
+import swal from 'sweetalert';
 const options = [
   'Inativo','Ativo'
 ];
@@ -57,9 +58,9 @@ _onSelect=(event) =>{
     })
       .then(response => response.json())
       .then(item => {
-        alert("Promoção Cadastrada com sucesso!")
         this.props.toggle()
         this.props.atualizaPromocoes()
+        swal("Cadastro Promoção", "Promoção Cadastrada com sucesso!", "success");
       })
       .catch(err => console.log(err))
   }
@@ -87,9 +88,9 @@ _onSelect=(event) =>{
     })
       .then(response => response.json())
       .then(item => {
-        alert("Promoção Atualizada com sucesso !")
         this.props.toggle()
         this.props.atualizaPromocoes()
+        swal("Cadastro Promoção", "Promoção atualizada com sucesso!", "success");
       })
       .catch(err => console.log(err))
   }
