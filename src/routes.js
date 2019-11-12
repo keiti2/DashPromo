@@ -5,7 +5,6 @@ import Promocao from "views/Promocao.jsx";
 import ValidarPromocao from "views/ValidarPromo.jsx";
 import Cliente from "views/Cliente.jsx";
 
-
 const dashboardRoutes = [
   {
     path: "/dashboard",

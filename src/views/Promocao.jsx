@@ -1,4 +1,4 @@
-import React, { Component,Image } from 'react';
+import React, { Component } from 'react';
 import { Grid, Row, Col,Table  } from "react-bootstrap";
 import { prArray } from "variables/Variables.jsx";
 import Cards from "components/Card/Card.jsx";
@@ -7,12 +7,10 @@ import 'react-dropdown/style.css'
 import axios from 'axios'
 import ModalForm from '../components/ModalForm/ModalFormPromo'
 import Moment from 'moment';
-import swal from 'sweetalert';
 
 const options = [
     'Ativo','Inativo'
 ];
-const defaultOption = options[0];
 
 class Promocao extends Component {
 
@@ -75,7 +73,6 @@ addItemToState = (item) => {
     items: [...prevState.items, item]
   }))
 }
-
 
 
 updateState = (item) => {

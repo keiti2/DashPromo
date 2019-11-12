@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Grid, Row, Col,Table } from "react-bootstrap";
 import axios from 'axios';
 import { Card } from "components/Card/Card.jsx";
-import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { thArray } from "variables/Variables.jsx";
 import CardStat from "components/Card/CardStats"
 import Alerta from "components/Alerts/Alerta.jsx"

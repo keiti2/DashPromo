@@ -1,13 +1,9 @@
 
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebar/Sidebar";
-
-
 import routes from "routes.js";
-
 import image from "assets/img/sidebar-3.jpg";
 
 class Admin extends Component {
@@ -86,6 +82,7 @@ class Admin extends Component {
   }
   render() {
     return (
+      
       <div className="wrapper">
         <Sidebar {...this.props} routes={routes} image={this.state.image}
         color={this.state.color}

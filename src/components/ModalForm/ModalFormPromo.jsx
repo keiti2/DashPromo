@@ -18,9 +18,7 @@ class ModalForm extends Component {
 
   render() {
       const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>
-
       const label = this.props.buttonLabel
-
       let button = ''
       let title = ''
 
@@ -33,10 +31,10 @@ class ModalForm extends Component {
         title = 'Editar Promoção'
       } else {
         button = <Button
-                  color="success"
-                  onClick={this.toggle}
-                  style={{float: "left", marginRight:"10px"}}>{label}
-                </Button>
+                   color="success"
+                   onClick={this.toggle}
+                   style={{float: "left", marginRight:"10px",backgroundColor:"green",color:"white"}}>{label}
+                 </Button>
         title = 'Adicionar Promoção'
       }
 
@@ -44,6 +42,8 @@ class ModalForm extends Component {
       return (
       <div>
         {button}
+
+
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle} close={closeBtn}>{title}</ModalHeader>
           <ModalBody>
