@@ -13,18 +13,11 @@ const options = [
 ];
 
 class Promocao extends Component {
-
-
-
-  constructor(props){
-    super(props);
-    this.state={
-      promocao:[],
-      msgAtvInt:"",
-      situacao:"Ativo"
-    }
-    this.atualizaPromocoes=this.atualizaPromocoes.bind(this)
-  }
+  state={
+    promocao:[],
+    msgAtvInt:"",
+    situacao:"Ativo"
+  }  
 
   componentDidMount() {
     this.getPromocoes(1)
@@ -49,7 +42,7 @@ class Promocao extends Component {
   }
 
   atualizaPromocoes(){
-    this.getPromocoes(1)
+    window.location.reload()
   }
 
 _onSelect=(event) =>{

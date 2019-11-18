@@ -5,7 +5,6 @@ import { Card } from "components/Card/Card.jsx";
 import { thArray } from "variables/Variables.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import  {Input}  from 'reactstrap';
-import swal from 'sweetalert';
 
 class ValidarPromo extends Component {
     constructor(props){
@@ -54,12 +53,12 @@ validarCupom(){
     this.setState({ dadosCupom });
     if (this.state.dadosCupom.message=="Cupom"){
       if(this.state.dadosCupom.data.utilizado===1){
-        swal("Validar Cupom", "Cupom já utilizado !", "warning");
+          alert("Cupom já utilizado.")
       }else{
         this.setState({nomecliente:dadosCupom.data.cliente.nome,nomePromo:dadosCupom.data.promocao.nomePromocao,qtde:dadosCupom.data.qtde,idcupom:dadosCupom.data.idCupom,btnstyle:"success"})
       }
     }else{
-      swal("Validar Cupom", "Cupom inválido !", "error");
+      alert("Codigo cupom inválido")
     }
   }
   )
@@ -69,10 +68,10 @@ confirmar(){
     if (this.state.idcupom>0){
       axios.put('http://52.67.233.156/api/cupom/altera/' + this.state.idcupom, { utilizado:'1' })
         .then(function(response){
-          swal("Validar Cupom", "Cupom validado com sucesso !", "success");
+          alert("Cupom validado com sucesso !")
         });  
     }else{
-      swal("Validar Cupom", "Digita o código do cupom !", "error");
+      alert("Digite primeiro o código do cupom !")
     }
     this.gerarPromoResgatada()
           this.setState({codigocupom:"",nomecliente:"",nomePromo:"",qtde:0,idcupom:0,btnstyle:"secondary"})
