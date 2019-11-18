@@ -1,6 +1,5 @@
 import React from 'react';
-import {  Form, FormGroup, Label, Input,Row,Col } from 'reactstrap';
-import Button from "components/CustomButton/CustomButton.jsx";
+import { Button, Form, FormGroup, Label, Input,Row,Col } from 'reactstrap';
 import Dropdown from 'react-dropdown'
 import Upload from '../FormInputs/Upload'
 import swal from 'sweetalert';
@@ -151,7 +150,7 @@ _onSelect=(event) =>{
        <Col md={6}>
        <FormGroup>
           <Label for="valorPromocao">Valor Promocional</Label>
-          <Input type="number" name="valorPromocao" id="valorPromocao" onChange={this.onChange} value={this.state.valorPromocao === null ? '0,00' : this.state.valorReal}  />
+          <Input type="number" name="valorPromocao" id="valorPromocao" onChange={this.onChange} value={this.state.valorPromocao === null ? '0,00' : this.state.valorPromocao}  />
         </FormGroup>
        </Col>
      </Row>
