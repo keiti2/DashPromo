@@ -134,7 +134,7 @@ updateState = (item) => {
                             <td >{this.state.situacao}</td>
                             <td>
                             <div >
-                             <ModalForm buttonLabel="Edit" item={promo}  updateState={this.updateState} atualizaPromocoes={this.atualizaPromocoes}/>
+                             <ModalForm buttonLabel="Editar" item={promo}  updateState={this.updateState} atualizaPromocoes={this.atualizaPromocoes}/>
                               {' '}
                                   </div>
                             </td>

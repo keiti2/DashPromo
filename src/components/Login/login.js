@@ -43,7 +43,7 @@ onChange = e => {
 			<div class="wrap-login100">
 
 				<div class="login100-pic js-tilt" data-tilt>
-                    <img src="https://www.nerdstickers.com.br/arquivos/2018/07/Adesivo-Unic%C3%B3rnio-III-Nerd-Stickers.png" alt="description"/>
+                    <img src="/static/media/reactlogo.aaac587d.png" alt="description"/>
 				</div>
 
 				<form class="login100-form validate-form">
