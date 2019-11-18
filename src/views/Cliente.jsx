@@ -3,7 +3,6 @@ import Cards from "components/Card/Card.jsx";
 import { Grid, Row, Col,Table } from "react-bootstrap";
 import { cliArray } from "variables/Variables.jsx";
 import axios from 'axios';
-import Moment from 'moment';
 
 class Cliente extends Component {
   state={
@@ -46,8 +45,8 @@ class Cliente extends Component {
                        <tr>
                          <td key={cli.idCliente}>{cli.nome}</td>
                          <td key={cli.idCliente}>{cli.email}</td>
-                         <td key={cli.idCliente}>{Moment(cli.updatedAt).format("DD/MM/YYYY")}</td>
-                         <td key={cli.idCliente}>{Moment(cli.createdAt).format("DD/MM/YYYY")}</td>
+                         <td key={cli.idCliente}>{cli.updatedAt}</td>
+                         <td key={cli.idCliente}>{cli.createdAt}</td>
                        </tr>
                      )
                    })

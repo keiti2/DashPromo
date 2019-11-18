@@ -4,13 +4,18 @@ import {
   Grid,
   Row,
   Col,
+  FormGroup,
+  FormControl,
 } from "react-bootstrap";
 
-import swal from 'sweetalert';
+
+
 import { Card } from "components/Card/Card.jsx";
+import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import axios from "axios"
 import  {Input}  from 'reactstrap';
+
 
 class UserProfile extends Component {
   state={
@@ -26,9 +31,7 @@ class UserProfile extends Component {
     cep:0,
     sobreempresa:"",
     segmento:"",
-    responsavel:"",
-    show:true,
-    close:false
+    responsavel:""
   }
 
 
@@ -57,7 +60,7 @@ class UserProfile extends Component {
     })
       .then(response => response.json())
       .then(emp => {
-        swal("Cadastro Empresa", "Cadastro atualizado com sucesso !", "success");
+        alert("Empresa Atualizada !")
       })
       .catch(err => console.log(err))
   }
@@ -65,6 +68,8 @@ class UserProfile extends Component {
   onChange = e => {
     this.setState({[e.target.name]: e.target.value})
   }
+
+
   
 
 componentDidMount(){
@@ -78,6 +83,7 @@ componentDidMount(){
   )
   .catch(console.log("Deu ruim Empresa"))
 }
+
 
 
   render() {
@@ -168,8 +174,8 @@ componentDidMount(){
                 }
               />
             </Col>
+           
           </Row>
-         
         </Grid>
       </div>
     );
