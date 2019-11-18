@@ -165,7 +165,7 @@ _onSelect=(event) =>{
        <Col md={6}>
        <FormGroup>
           <Label for="valorPromocao">Valor Promocional</Label>
-          <Input type="number" name="valorPromocao" id="valorPromocao" onChange={this.onChange} value={this.state.valorPromocao === null ? '0,00' : this.state.valorReal}  />
+          <Input type="number" name="valorPromocao" id="valorPromocao" onChange={this.onChange} value={this.state.valorPromocao === null ? '0,00' : this.state.valorPromocao}  />
         </FormGroup>
        </Col>
      </Row>
