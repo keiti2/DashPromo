@@ -6,17 +6,25 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import axios from 'axios'
 import ModalForm from '../components/ModalForm/ModalFormPromo'
+import Moment from 'moment';
 
 const options = [
     'Ativo','Inativo'
 ];
 
 class Promocao extends Component {
-  state={
-    promocao:[],
-    msgAtvInt:"",
-    situacao:"Ativo"
-  }  
+
+
+
+  constructor(props){
+    super(props);
+    this.state={
+      promocao:[],
+      msgAtvInt:"",
+      situacao:"Ativo"
+    }
+    this.atualizaPromocoes=this.atualizaPromocoes.bind(this)
+  }
 
   componentDidMount() {
     this.getPromocoes(1)
@@ -41,7 +49,7 @@ class Promocao extends Component {
   }
 
   atualizaPromocoes(){
-    window.location.reload()
+    this.getPromocoes(1)
   }
 
 _onSelect=(event) =>{
@@ -122,7 +130,7 @@ updateState = (item) => {
                             <td >{promo.nomePromocao}</td>
                             <td >{promo.qtde + " Uni"}</td>
                             <td >{"R$ " + promo.valorPromocao}</td>
-                            <td > {promo.createdAt} </td>
+                            <td > {Moment(promo.createdAt).format("DD/MM/YYYY")} </td>
                             <td >{this.state.situacao}</td>
                             <td>
                             <div >

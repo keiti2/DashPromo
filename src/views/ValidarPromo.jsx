@@ -5,6 +5,7 @@ import { Card } from "components/Card/Card.jsx";
 import { thArray } from "variables/Variables.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import  {Input}  from 'reactstrap';
+import swal from 'sweetalert';
 
 class ValidarPromo extends Component {
     constructor(props){
@@ -12,21 +13,35 @@ class ValidarPromo extends Component {
         this.state={
           sucesso:"True",
           promocao:[]  ,
-          value:0,
+          resgatadas:0,
           btnconfirmar:true,
           codigocupom:"",
           dadosCupom:[],
           nomecliente:"",
           qtde:0,
-          nomePromo:""
+          nomePromo:"",
+          idcupom:0,
+          btnstyle:"secondary"
         }
         this.validarCupom=this.validarCupom.bind(this)
+        this.confirmar=this.confirmar.bind(this)
+        this.gerarPromoResgatada=this.gerarPromoResgatada.bind(this)
       }
 
     componentDidMount() {
+     this.gerarPromoResgatada()
+      }
+
+      gerarPromoResgatada(){
         axios.get(`http://52.67.233.156/api/cupom`)
         .then(res => {
-          const promocao = res.data.data;
+          const promo = res.data.data;
+          const promocao =[]
+          promo.map(p=>{
+            if(p.utilizado===1){
+              promocao.push(p)
+            }
+          })
           this.setState({ promocao });
         }
         )
@@ -38,16 +53,32 @@ validarCupom(){
     const dadosCupom = res.data;
     this.setState({ dadosCupom });
     if (this.state.dadosCupom.message=="Cupom"){
-      this.setState({nomecliente:dadosCupom.data.cliente.nome,nomePromo:dadosCupom.data.promocao.nomePromocao,qtde:dadosCupom.data.qtde})
-
+      if(this.state.dadosCupom.data.utilizado===1){
+        swal("Validar Cupom", "Cupom já utilizado !", "warning");
+      }else{
+        this.setState({nomecliente:dadosCupom.data.cliente.nome,nomePromo:dadosCupom.data.promocao.nomePromocao,qtde:dadosCupom.data.qtde,idcupom:dadosCupom.data.idCupom,btnstyle:"success"})
+      }
     }else{
-      alert("Codigo cupom inválido")
+      swal("Validar Cupom", "Cupom inválido !", "error");
     }
   }
   )
-  
-  console.log("Validou")
 }      
+
+confirmar(){
+    if (this.state.idcupom>0){
+      axios.put('http://52.67.233.156/api/cupom/altera/' + this.state.idcupom, { utilizado:'1' })
+        .then(function(response){
+          swal("Validar Cupom", "Cupom validado com sucesso !", "success");
+        });  
+    }else{
+      swal("Validar Cupom", "Digita o código do cupom !", "error");
+    }
+    this.gerarPromoResgatada()
+          this.setState({codigocupom:"",nomecliente:"",nomePromo:"",qtde:0,idcupom:0,btnstyle:"secondary"})
+          this.gerarPromoResgatada()
+
+}
 
 onChange = e => {
   this.setState({[e.target.name]: e.target.value})
@@ -64,8 +95,8 @@ onChange = e => {
                             <h5 class="card-title" text-align="center">Digite o código do cupom promocional</h5>
                             <Input type="text" name="codigocupom" id="codigocupom" placeholder="Código Cupom" onChange={this.onChange} value={ this.state.codigocupom} />
                             <br></br>
-                            <Button  pullRight fill  onClick={this.validarCupom} >
-                                Validarrr
+                            <Button bsStyle="success" pullRight fill   onClick={this.validarCupom} >
+                                Validar
                             </Button>
                             
                         </div>
@@ -79,7 +110,7 @@ onChange = e => {
                             <h6 class="card-subtitle mb-2 text-muted">Produto: {this.state.nomePromo}</h6>
                             <h6 class="card-subtitle mb-2 text-muted">Quantidade: {this.state.qtde}</h6>
                         <div display='none'>
-                            <Button  pullRight fill   >
+                            <Button bsStyle={this.state.btnstyle} pullRight fill onClick={this.confirmar}  >
                                 Confirmar
                             </Button>
                         </div>
@@ -125,12 +156,7 @@ onChange = e => {
               />
             </Col>
         </Row>
-
-
                 </Grid>
-            
-
-              
         );
     }
 }

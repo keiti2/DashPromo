@@ -3,7 +3,7 @@ import { Grid, Row, Col,Table } from "react-bootstrap";
 import axios from 'axios';
 import { Card } from "components/Card/Card.jsx";
 import { thArray } from "variables/Variables.jsx";
-
+import CardStat from "components/Card/CardStats"
 import Alerta from "components/Alerts/Alerta.jsx"
 class Dashboard extends Component {
   constructor(props){
@@ -11,7 +11,8 @@ class Dashboard extends Component {
     this.state={
       sucesso:"True",
       promocao:[]  ,
-      value:0
+      resgatadas:0,
+      geradas:0
     }
   }
 
@@ -20,26 +21,34 @@ class Dashboard extends Component {
     .then(res => {
       const promocao = res.data.data;
       this.setState({ promocao });
+      this.statusResgatadas()
     }
     )
   }
 
   statusResgatadas(){
    
-    this.state.promo.map(promo=>{
+    this.state.promocao.map(promo=>{
       if (promo.utilizado===1){
-        this.setState({value:this.state.value.count += 1});
+        this.setState({value:this.state.resgatadas += 1});
+      }else{
+        this.setState({value:this.state.geradas += 1});
       }
     })
-    console.log(this.state.value)
-    return(this.state.value)
+    return(this.state.resgatadas)
   }
 
   render() {
     return (
-      <div className="content">
         <Grid fluid>
-          <Row>
+          <br/>
+          <CardStat
+          geradas={this.state.geradas}
+          resgatadas={this.state.resgatadas}
+          />
+
+         {/*
+              <Row>
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-angle-down-circle text-warning" />}
@@ -69,7 +78,10 @@ class Dashboard extends Component {
               />
             </Col>
           </Row>
-        <Row>
+        
+        */}  
+        <br/>
+          <Row>
         <Col md={12}>
               <Card
                 title="Promoções resgatadas"
@@ -112,7 +124,6 @@ class Dashboard extends Component {
           </Col>
         </Row>
         </Grid>
-      </div>
     );
   }
 }

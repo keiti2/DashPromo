@@ -2,11 +2,8 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input,Row,Col } from 'reactstrap';
 import Dropdown from 'react-dropdown'
 import Upload from '../FormInputs/Upload'
-<<<<<<< HEAD
 import swal from 'sweetalert';
 
-=======
->>>>>>> parent of fdd31e5... Implementado alertas
 const options = [
   'Inativo','Ativo'
 ];
@@ -64,9 +61,9 @@ _onSelect=(event) =>{
     })
       .then(response => response.json())
       .then(item => {
-        alert("Promoção Cadastrada com sucesso!")
         this.props.toggle()
         this.props.atualizaPromocoes()
+        swal("Cadastro Promoção", "Promoção Cadastrada com sucesso!", "success");
       })
       .catch(err => console.log(err))
   }
@@ -92,7 +89,6 @@ _onSelect=(event) =>{
           imagem:imagem,
         })
       })
-<<<<<<< HEAD
         .then(response => response.json())
         .then(item => {
       this.props.toggle()
@@ -100,16 +96,6 @@ _onSelect=(event) =>{
           swal("Cadastro Promoção", "Promoção atualizada com sucesso!", "success");
         })
         .catch(err => console.log(err))
-=======
-    })
-      .then(response => response.json())
-      .then(item => {
-        alert("Promoção Atualizada com sucesso !")
-        this.props.toggle()
-        this.props.atualizaPromocoes()
-      })
-      .catch(err => console.log(err))
->>>>>>> parent of fdd31e5... Implementado alertas
   }
 
   componentDidMount(){
